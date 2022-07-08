@@ -1,4 +1,4 @@
-class Board
+class ConnectFour
   attr_accessor :board
 
   def drop(piece, coordinates)

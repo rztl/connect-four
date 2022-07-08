@@ -1,15 +1,16 @@
 require './lib/board'
 
 describe Board do
-  it 'updates as oooo on first row' do
+  it 'updates as oooo on last row' do
     board_instance = Board.new
-    board_instance.board = [
-      ['o', 'o', 'o', '', '', '', ''],
+    board_instance.board = 
+		[
       ['' , '' , '' , '' , '', '', ''],
       ['' , '' , '' , '' , '', '', ''],
       ['' , '' , '' , '' , '', '', ''],
       ['' , '' , '' , '' , '', '', ''],
-      ['' , '' , '' , '' , '', '', '']
+      ['' , '' , '' , '' , '', '', ''],
+      ['o', 'o', 'o', '' , '', '', '']
     ]
     piece = 'o'
     coordinates = [0, 3]
@@ -19,12 +20,12 @@ describe Board do
 
     expect(updated_board).to eq(
       [
-        ['o', 'o', 'o', 'o', '', '', ''],
         ['' , '' , '' , '' , '', '', ''],
         ['' , '' , '' , '' , '', '', ''],
         ['' , '' , '' , '' , '', '', ''],
         ['' , '' , '' , '' , '', '', ''],
-        ['' , '' , '' , '' , '', '', '']
+        ['' , '' , '' , '' , '', '', ''],
+        ['o', 'o', 'o', 'o', '', '', '']
       ] 
     )
   end

@@ -61,7 +61,159 @@ describe Board do
 		end
 	end
 
-	it 'updates as oooo on last row' 
-	it 'returns winning message' 
-	it 'returns losing message'
+	describe '#four_successive_pieces' do
+		context 'when the succession chain is a row' do
+			it 'returns true for that piece' do
+				board_array = 
+				[
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['', '', '' ,'o' , 'o', 'o', 'o']
+				]
+				board = Board.new(board_array)
+				board.latest_placement_coordinates = [5, 3]
+				board.latest_placement_piece = 'o'
+			
+				expect(board.four_successive_pieces?).to be true
+			end
+
+			it 'returns false otherwise' do
+				board_array = 
+				[
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['o', 'o', 'x' ,'o' , 'x', 'o', 'x']
+				]
+				board = Board.new(board_array)
+				board.latest_placement_coordinates = [5, 2]
+				board.latest_placement_piece = 'o'
+			
+				expect(board.four_successive_pieces?).to be false
+			end
+
+			
+		end
+
+		context 'when the succession chain is a column' do
+			it 'returns true for that piece' do
+				board_array = 
+				[
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['x' , '' , '' , '' , '', '', ''],
+					['x' , '' , '' , '' , '', '', ''],
+					['x' , '' , '' , '' , '', '', ''],
+					['x', '', '' ,'' , '', '', '']
+				]
+				board = Board.new(board_array)
+				board.latest_placement_coordinates = [2, 0]
+				board.latest_placement_piece = 'x'
+			
+				expect(board.four_successive_pieces?).to be true
+			end
+
+			it 'returns false otherwise' do
+				board_array = 
+				[
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['' , 'x' , '' , '' , '', '', ''],
+					['' , 'x' , '' , '' , '', '', ''],
+					['' , 'x' , '' , '' , '', '', '']
+				]
+				board = Board.new(board_array)
+				board.latest_placement_coordinates = [3, 1]
+				board.latest_placement_piece = 'x'
+			
+				expect(board.four_successive_pieces?).to be false
+			end
+
+			
+		end
+
+		context 'when the succession chain is a left diagonal' do
+			it 'returns true for that piece' do
+				board_array = 
+				[
+					['' , '' , '' ,  ''  , '', '', ''],
+					['' , '' , '' ,  ''  , '', '', ''],
+					['' , '' , '' ,  'x' , '', '', ''],
+					['' , '' , 'x' , 'o' , '', '', ''],
+					['' , 'x' ,'o' , 'x' , '', '', ''],
+					['x' ,'o' ,'o' , 'x' , '', '', ''],
+
+				]
+				board = Board.new(board_array)
+				board.latest_placement_coordinates = [2, 3]
+				board.latest_placement_piece = 'x'
+			
+				expect(board.four_successive_pieces?).to be true
+			end
+
+			it 'returns false otherwise' do
+				board_array = 
+				[
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['' , 'x' , '' , '' , '', '', ''],
+					['' , 'x' , '' , '' , '', '', ''],
+					['' , 'x' , '' , '' , '', '', '']
+				]
+				board = Board.new(board_array)
+				board.latest_placement_coordinates = [3, 1]
+				board.latest_placement_piece = 'x'
+			
+				expect(board.four_successive_pieces?).to be false
+			end
+
+			
+		end
+
+		context 'when the succession chain is a right diagonal' do
+			it 'returns true for that piece' do
+				board_array = 
+				[
+					['' , '' , '' ,  'x'  , '', '', ''],
+					['' , '' , '' ,  'o'  ,'x', '', ''],
+					['' , '' , '' ,  'x' , 'x', 'x', ''],
+					['' , '' , 'x' , 'o' , 'o', 'o', 'x'],
+					['' , 'o' ,'o' , 'x' , 'x', 'x', 'o'],
+					['x' ,'o' ,'o' , 'x' , 'o', 'x', 'x'],
+
+				]
+				board = Board.new(board_array)
+				board.latest_placement_coordinates = [0, 3]
+				board.latest_placement_piece = 'x'
+			
+				expect(board.four_successive_pieces?).to be true
+			end
+
+			it 'returns false otherwise' do
+				board_array = 
+				[
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['' , '' , '' , '' , '', '', ''],
+					['' , 'x' , '' , '' , '', '', ''],
+					['' , 'x' , '' , '' , '', '', ''],
+					['' , 'x' , '' , '' , '', '', '']
+				]
+				board = Board.new(board_array)
+				board.latest_placement_coordinates = [3, 1]
+				board.latest_placement_piece = 'x'
+			
+				expect(board.four_successive_pieces?).to be false
+			end
+
+			
+		end
+	end
 end
